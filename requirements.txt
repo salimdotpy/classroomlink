@@ -11,3 +11,8 @@ pydantic-settings
 
 # Templates
 jinja2
+
+# Authentication
+pwdlib[argon2]
+itsdangerous
+email-validator
