@@ -1,4 +1,4 @@
-
+from app.routers import auth_router
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -26,6 +26,10 @@ app = FastAPI(
 
 # Register centralized exception handlers.
 register_exception_handlers(app)
+
+app.include_router(auth_router)
+
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 # Serve local CSS, JavaScript, and images.
 app.mount(
