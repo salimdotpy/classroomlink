@@ -159,7 +159,7 @@ The application follows a modular monolithic architecture.
 ## Current Progress
 
 - [x] Phase 1: Project Initialization
-- [ ] Phase 2: Application Foundation
+- [x] Phase 2: Application Foundation
 - [ ] Phase 3: Authentication
 - [ ] Phase 4: Lecturer Dashboard
 - [ ] Phase 5: Student Access
