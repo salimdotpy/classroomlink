@@ -1,13 +1,11 @@
-
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.security import hash_password
+from app.core.security import hash_password, verify_password
 from app.models.enums import UserRole
 from app.models.user import User
 from app.repositories.user import UserRepository
-from app.schemas.user import UserRegister
-
+from app.schemas.user import UserRegister, UserLogin
 
 class EmailAlreadyRegisteredError(Exception):
     """Raised when an email address is already registered."""
@@ -67,5 +65,35 @@ class AuthService:
 
             # Do not hide unrelated database integrity errors.
             raise
+
+        return user
+
+    async def authenticate_user(
+            self,
+            data: UserLogin,
+        ) -> User | None:
+        """
+        Authenticate a user using email and password.
+
+        Returns:
+            User if credentials are valid and account is active.
+            None otherwise.
+        """
+
+        email = str(data.email).strip().lower()
+
+        user = await self.users.get_by_email(email)
+
+        if user is None:
+            return None
+
+        if not user.is_active:
+            return None
+
+        if not verify_password(
+            data.password,
+            user.password_hash,
+        ):
+            return None
 
         return user

@@ -45,3 +45,14 @@ class UserRead(BaseModel):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+class UserLogin(BaseModel):
+    """
+    Credentials required to authenticate a user.
+    """
+
+    email: EmailStr
+    password: str = Field(
+        min_length=1,
+        max_length=128,
+    )

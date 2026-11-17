@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     database_url: str = "sqlite+aiosqlite:///./classroomlink.db"
     sql_echo: bool = False
 
+    session_cookie_secure: bool = False
+    session_max_age: int = 28800
+    
     model_config = SettingsConfigDict(
         env_file=BASE_DIR / ".env",
         env_file_encoding="utf-8",

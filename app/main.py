@@ -1,4 +1,3 @@
-from app.routers import auth_router
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -10,6 +9,11 @@ from app.core.dependencies import get_session
 from app.core.exceptions import register_exception_handlers
 from app.core.lifespan import lifespan
 from app.core.templates import templates
+from starlette.middleware.sessions import SessionMiddleware
+
+from app.core.config import BASE_DIR, settings
+
+from app.routers import auth_router
 
 STATIC_DIR = BASE_DIR / "app" / "static"
 
@@ -22,6 +26,15 @@ app = FastAPI(
     version="0.2.0",
     debug=settings.debug,
     lifespan=lifespan,
+)
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=settings.secret_key,
+    session_cookie="classroomlink_session",
+    max_age=settings.session_max_age,
+    same_site="lax",
+    https_only=settings.session_cookie_secure,
 )
 
 # Register centralized exception handlers.
