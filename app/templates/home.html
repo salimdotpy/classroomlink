@@ -1,0 +1,110 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+{{ app_name }} | Classroom Streaming Platform
+{% endblock %}
+
+{% block content %}
+
+<div class="min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <header class="navbar bg-base-100 border-b border-base-300 px-6">
+
+        <div class="flex-1">
+            <a href="/" class="text-xl font-bold tracking-tight text-primary">
+                ClassroomLink
+            </a>
+        </div>
+
+        <div class="flex-none">
+            <span class="badge badge-success badge-outline">
+                System Online
+            </span>
+        </div>
+
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1 flex items-center justify-center p-6">
+
+        <section class="card bg-base-100 shadow-xl w-full max-w-3xl">
+
+            <div class="card-body items-center text-center py-14">
+
+                <div class="badge badge-primary badge-outline mb-4">
+                    Local Classroom Technology
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+                    Welcome to
+                    <span class="text-primary">ClassroomLink</span>
+                </h1>
+
+                <p class="text-base-content/70 max-w-xl mt-4 leading-relaxed">
+                    A local network-based interactive classroom
+                    screen-sharing and laboratory device streaming
+                    platform.
+                </p>
+
+                <div class="divider max-w-md mx-auto"></div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full mt-4">
+
+                    <div class="stat bg-base-200 rounded-box">
+                        <div class="stat-title">Backend</div>
+                        <div class="stat-value text-primary text-2xl">
+                            FastAPI
+                        </div>
+                        <div class="stat-desc">
+                            Application server
+                        </div>
+                    </div>
+
+                    <div class="stat bg-base-200 rounded-box">
+                        <div class="stat-title">Database</div>
+                        <div class="stat-value text-primary text-2xl">
+                            SQLite
+                        </div>
+                        <div class="stat-desc">
+                            Local storage
+                        </div>
+                    </div>
+
+                    <div class="stat bg-base-200 rounded-box">
+                        <div class="stat-title">Frontend</div>
+                        <div class="stat-value text-primary text-2xl">
+                            HTMX
+                        </div>
+                        <div class="stat-desc">
+                            Interactive interface
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-8">
+                    <span class="text-sm text-base-content/60">
+                        Application foundation successfully initialized.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-center bg-base-100 p-5 border-t border-base-300">
+
+        <p class="text-sm text-base-content/60">
+            {{ app_name }} &copy; 2026.
+            Local classroom technology.
+        </p>
+
+    </footer>
+
+</div>
+
+{% endblock %}
