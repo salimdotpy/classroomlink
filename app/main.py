@@ -14,6 +14,10 @@ from starlette.middleware.sessions import SessionMiddleware
 from app.core.config import BASE_DIR, settings
 
 from app.routers import auth_router
+from app.routers.lecturers import router as lecturers_router
+from app.routers.students import router as students_router
+from app.routers.web.lecturers import router as lecturer_web_router
+from app.routers.web.students import router as student_web_router
 
 STATIC_DIR = BASE_DIR / "app" / "static"
 
@@ -41,6 +45,10 @@ app.add_middleware(
 register_exception_handlers(app)
 
 app.include_router(auth_router)
+app.include_router(lecturers_router)
+app.include_router(students_router)
+app.include_router(lecturer_web_router)
+app.include_router(student_web_router)
 
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 

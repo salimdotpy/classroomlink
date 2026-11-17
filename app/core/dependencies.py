@@ -1,3 +1,4 @@
+
 from collections.abc import AsyncGenerator
 from uuid import UUID
 
@@ -14,45 +15,38 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
         yield session
 
 
-async def get_current_user(
+async def get_optional_current_user(
     request: Request,
     session: AsyncSession = Depends(get_session),
-) -> User:
-    """
-    Retrieve the currently authenticated user.
-
-    The session cookie contains only the user ID.
-    The actual user is loaded from the database.
-    """
-
+) -> User | None:
     user_id = request.session.get("user_id")
 
     if not user_id:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Authentication required.",
-        )
+        return None
 
     try:
         parsed_user_id = UUID(str(user_id))
     except (ValueError, TypeError):
         request.session.clear()
-
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication session.",
-        )
+        return None
 
     repository = UserRepository(session)
-
     user = await repository.get_by_id(parsed_user_id)
 
     if user is None or not user.is_active:
         request.session.clear()
+        return None
 
+    return user
+
+
+async def get_current_user(
+    current_user: User | None = Depends(get_optional_current_user),
+) -> User:
+    if current_user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Authentication required.",
         )
 
-    return user
+    return current_user

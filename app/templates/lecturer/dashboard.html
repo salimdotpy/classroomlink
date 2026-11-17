@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Lecturer Dashboard | {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-base-200/50">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+        <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <div class="text-sm font-medium text-primary">
+                    Lecturer workspace
+                </div>
+                <h1 class="mt-1 text-3xl font-bold tracking-tight">
+                    Welcome back!
+                </h1>
+                <p class="mt-2 text-base-content/65">
+                    Manage your classrooms and prepare interactive learning sessions.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 rounded-xl border border-base-300 bg-base-100 p-3 shadow-sm">
+                <div class="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <iconify-icon icon="solar:user-bold" width="22"></iconify-icon>
+                </div>
+                <div class="min-w-0">
+                    <p class="truncate font-semibold">
+                        {{ current_user.email }}
+                    </p>
+                    <p class="text-xs text-base-content/60">
+                        Lecturer account
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+            <div class="card border border-base-300 bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <h2 class="font-semibold">My classrooms</h2>
+                        <div class="rounded-lg bg-primary/10 p-3 text-primary">
+                            <iconify-icon icon="solar:buildings-2-bold" width="24"></iconify-icon>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-base-content/60">
+                        Your created classrooms will appear here.
+                    </p>
+                    <div class="mt-4">
+                        <span class="badge badge-outline">Classroom management upcoming</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border border-base-300 bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <h2 class="font-semibold">Live sessions</h2>
+                        <div class="rounded-lg bg-success/10 p-3 text-success">
+                            <iconify-icon icon="solar:monitor-camera-bold" width="24"></iconify-icon>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-base-content/60">
+                        Your active classroom sessions will appear here.
+                    </p>
+                    <div class="mt-4">
+                        <span class="badge badge-outline">Session management upcoming</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border border-base-300 bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <div class="flex items-center justify-between">
+                        <h2 class="font-semibold">Laboratory devices</h2>
+                        <div class="rounded-lg bg-info/10 p-3 text-info">
+                            <iconify-icon icon="solar:cpu-bolt-bold" width="24"></iconify-icon>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-base-content/60">
+                        Connected laboratory equipment and device status will appear here.
+                    </p>
+                    <div class="mt-4">
+                        <span class="badge badge-outline">Device integration upcoming</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-8 rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
+            <div class="flex items-start gap-4">
+                <div class="rounded-xl bg-primary/10 p-3 text-primary">
+                    <iconify-icon icon="solar:rocket-2-bold" width="28"></iconify-icon>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold">Your teaching workspace is ready</h2>
+                    <p class="mt-2 max-w-2xl text-base-content/65">
+                        ClassroomLink will bring classroom management, screen sharing,
+                        student participation and laboratory device streaming together
+                        in one local network platform.
+                    </p>
+                    <p class="mt-3 text-sm text-base-content/60">
+                        We will activate these features progressively as development continues.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
